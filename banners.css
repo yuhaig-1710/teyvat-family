@@ -1,0 +1,25 @@
+.side-banner {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 170px;
+    height: auto;
+    max-height: 85vh;
+    object-fit: contain;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.left-banner {
+    left: 15px;
+}
+
+.right-banner {
+    right: 15px;
+}
+
+@media (max-width: 1300px) {
+    .side-banner {
+        display: none;
+    }
+}

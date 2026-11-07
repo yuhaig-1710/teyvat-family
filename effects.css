@@ -1,0 +1,78 @@
+@keyframes glowText {
+    0% { text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d; }
+    50% { text-shadow: 0 0 15px #ffb703, 0 0 25px #ff4d4d; }
+    100% { text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d; }
+}
+.slogan {
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes pulseGreen {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+.status-title {
+    animation: pulseGreen 1.5s infinite;
+}
+
+.price-img {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+.price-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 183, 3, 0.4);
+}
+
+@keyframes shakeBtn {
+    0% { transform: translateY(-4px) rotate(0deg); }
+    25% { transform: translateY(-4px) rotate(-1deg); }
+    75% { transform: translateY(-4px) rotate(1deg); }
+    100% { transform: translateY(-4px) rotate(0deg); }
+}
+.btn:hover {
+    animation: shakeBtn 0.3s ease-in-out infinite alternate;
+    box-shadow: 0 8px 20px rgba(255, 183, 3, 0.5);
+    filter: brightness(1.15);
+}
+/* Hiệu ứng hạt sáng khi click chuột / chạm màn hình */
+.click-particle {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #ffb703, #ff4d4d);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 0 10px #ffb703, 0 0 20px #ff4d4d;
+}
+/* Trạng thái ban đầu của các khối: ẩn đi và dịch xuống dưới một chút */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Khi cuộn tới, thêm class này để hiện ra */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+// Hiệu ứng cuộn trang hiện dần nội dung
+window.addEventListener('scroll', revealOnScroll);
+
+function revealOnScroll() {
+    var reveals = document.querySelectorAll('.reveal');
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100; // Khoảng cách để kích hoạt hiệu ứng
+        
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add('active');
+        }
+    }
+}
+
+// Chạy thử 1 lần khi vừa vào trang
+revealOnScroll();
